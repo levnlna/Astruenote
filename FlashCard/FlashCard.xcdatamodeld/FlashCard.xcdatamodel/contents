@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21D62" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
+        <attribute name="categoryName" optional="YES" attributeType="String"/>
+        <relationship name="consistOf" toMany="YES" deletionRule="Cascade" destinationEntity="FlashcardGroup" inverseName="has" inverseEntity="FlashcardGroup"/>
+    </entity>
+    <entity name="Flashcard" representedClassName="Flashcard" syncable="YES" codeGenerationType="class">
+        <attribute name="flashcardDescription" optional="YES" attributeType="String"/>
+        <attribute name="flashcardName" optional="YES" attributeType="String"/>
+        <relationship name="has" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="FlashcardGroup" inverseName="consistOf" inverseEntity="FlashcardGroup"/>
+    </entity>
+    <entity name="FlashcardGroup" representedClassName="FlashcardGroup" syncable="YES" codeGenerationType="class">
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="goal" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="groupName" optional="YES" attributeType="String"/>
+        <relationship name="consistOf" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Flashcard" inverseName="has" inverseEntity="Flashcard"/>
+        <relationship name="has" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Category" inverseName="consistOf" inverseEntity="Category"/>
+        <relationship name="partOf" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Goals" inverseName="consistOf" inverseEntity="Goals"/>
+    </entity>
+    <entity name="Goals" representedClassName="Goals" syncable="YES" codeGenerationType="class">
+        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="goalName" optional="YES" attributeType="String"/>
+        <attribute name="goalTarget" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isActive" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="consistOf" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="FlashcardGroup" inverseName="partOf" inverseEntity="FlashcardGroup"/>
+    </entity>
+    <elements>
+        <element name="Category" positionX="-182.20703125" positionY="-191.0078125" width="128" height="73"/>
+        <element name="Flashcard" positionX="238.69140625" positionY="-200.48046875" width="128" height="74"/>
+        <element name="FlashcardGroup" positionX="20.68359375" positionY="-308.765625" width="128" height="119"/>
+        <element name="Goals" positionX="27" positionY="-225" width="128" height="104"/>
+    </elements>
+</model>
